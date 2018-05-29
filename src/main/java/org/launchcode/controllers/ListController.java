@@ -28,9 +28,7 @@ public class ListController {
 
     @RequestMapping(value = "")
     public String list(Model model) {
-
         model.addAttribute("columns", columnChoices);
-
         return "list";
     }
 
@@ -53,13 +51,11 @@ public class ListController {
     }
 
     @RequestMapping(value = "jobs")
-    public String listJobsByColumnAndValue(Model model,
-            @RequestParam String column, @RequestParam String value) {
+    public String listJobsByColumnAndValue(Model model, @RequestParam String column, @RequestParam String value) {
 
         ArrayList<HashMap<String, String>> jobs = JobData.findByColumnAndValue(column, value);
         model.addAttribute("title", "Jobs with " + columnChoices.get(column) + ": " + value);
         model.addAttribute("jobs", jobs);
-
         return "list-jobs";
     }
 }
